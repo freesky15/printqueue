@@ -35,13 +35,18 @@ public class Main {
 
             System.out.println("QUEUE: ");
             printDispatcher.stop().stream().forEach(element -> System.out.println(element.toString()));
+
             System.out.println("PRINTED DOCUMENTS: ");
             printDispatcher.getPrintedDocuments().forEach(element -> System.out.println(element.toString()));
+
             System.out.println("AVERAGE: " + printDispatcher.getAverageDuration());
+
             System.out.println("SORTED BY DURATION PRINTED DOCUMENTS: ");
             printDispatcher.sortByPrintingDuration().stream().forEach(element -> System.out.println(element.toString()));
+
             System.out.println("SORTED BY PAPER SIZE PRINTED DOCUMENTS: ");
             printDispatcher.sortByPaperSize().stream().forEach(element -> System.out.println(element.toString()));
+
             System.out.println("SORTED BY DOCUMENT TYPE PRINTED DOCUMENTS: ");
             printDispatcher.sortByDocumentType().stream().forEach(element -> System.out.println(element.toString()));
         } catch (InterruptedException e) {
