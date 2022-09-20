@@ -2,34 +2,12 @@ package queues;
 
 import documents.DocumentStatus;
 import documents.Document;
-
 import java.util.AbstractQueue;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class PrintQueue implements PrintQueueInterface {
-
-    private List<Document> printedDocuments = new ArrayList<>();
     private AbstractQueue<Document> printQueue = new ConcurrentLinkedQueue<Document>();
-
-    public AbstractQueue<Document> getPrintQueue() {
-        return printQueue;
-    }
-
-    public void setPrintQueue(AbstractQueue<Document> printQueue) {
-        this.printQueue = printQueue;
-    }
-
-    @Override
-    public List<Document> getPrintedDocuments() {
-        return printedDocuments.stream().toList();
-    }
-
-    @Override
-    public void putDocumentToPrintedDocumentsList(Document printedDocument) {
-            this.printedDocuments.add(printedDocument);
-    }
 
     @Override
     public void putDocumentInQueue(Document document) {
@@ -61,6 +39,13 @@ public class PrintQueue implements PrintQueueInterface {
     @Override
     public List<Document> getAllDocumentsFromQueue() {
         return this.printQueue.stream().toList();
+    }
+
+    public AbstractQueue<Document> getPrintQueue() {
+        return printQueue;
+    }
+    public void setPrintQueue(AbstractQueue<Document> printQueue) {
+        this.printQueue = printQueue;
     }
 
 }

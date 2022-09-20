@@ -3,11 +3,13 @@ package queueclients;
 import documents.DocumentStatus;
 import documents.Document;
 import queues.PrintQueueInterface;
+import queues.PrintedDocuments;
 
 import java.util.List;
 import java.util.concurrent.Callable;
 
 public class Consumer implements Callable<List<Document>> {
+    private PrintedDocuments printedDocuments = new PrintedDocuments();
     private PrintQueueInterface printQueue;
     private Document document;
 
@@ -26,14 +28,13 @@ public class Consumer implements Callable<List<Document>> {
                     document.setStatus(DocumentStatus.IN_PROGRESS);
                     System.out.println("Document with id = " + document.getId() + " is printing(" + document.getStatus().toString() + "). It takes about " + document.getDuration());
 
-                    //printQueue.showAllDocuments();
                     printQueue.getAllDocumentsFromQueue().stream()
                             .forEach(element -> System.out.println(element.toString()));
                     System.out.println();
 
                     Thread.sleep(document.getDuration());
                     document.setStatus(DocumentStatus.DONE);
-                    printQueue.putDocumentToPrintedDocumentsList(document);
+                    printedDocuments.putDocumentToPrintedDocumentsList(document);
                     if (document.getStatus().equals(DocumentStatus.DONE)) {
                         System.out.println("Document with id = " + document.getId() + " was printed");
                         printQueue.printDocument();
@@ -41,9 +42,9 @@ public class Consumer implements Callable<List<Document>> {
                 }
             } catch (InterruptedException e) {
                 System.out.println("Consumer was stopped!");
-                return printQueue.getPrintedDocuments();
+                return printedDocuments.getDocuments();
             }
         }
-        return printQueue.getPrintedDocuments();
+        return printedDocuments.getDocuments();
     }
 }

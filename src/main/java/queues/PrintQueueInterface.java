@@ -15,7 +15,4 @@ public interface PrintQueueInterface {
 
     Document getDocument();
 
-    void putDocumentToPrintedDocumentsList(Document printedDocument);
-
-    List<Document> getPrintedDocuments();
 }
