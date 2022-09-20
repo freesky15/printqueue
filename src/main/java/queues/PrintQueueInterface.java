@@ -11,8 +11,6 @@ public interface PrintQueueInterface {
 
     List getAllDocumentsFromQueue();
 
-    void showAllDocuments();
-
     Document printDocument();
 
     Document getDocument();

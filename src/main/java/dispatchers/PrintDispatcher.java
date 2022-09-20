@@ -42,6 +42,10 @@ public class PrintDispatcher {
                 .toList();
     }
 
+    public List<Document> getQueuedDocuments() {
+        return printQueue.getAllDocumentsFromQueue();
+    }
+
     public void putProducerToThreatPool(Runnable threat) {
         executorServiceProducer.execute(threat);
     }

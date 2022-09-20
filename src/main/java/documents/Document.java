@@ -42,12 +42,15 @@ public abstract class Document {
 
     @Override
     public String toString() {
-        return "Documents{" +
-                "type='" + type + '\'' +
-                ", printingDuration=" + duration +
-                ", paper=" + paper +
-                ", id=" + id +
-                ", status=" + status +
-                '}';
+        return new StringBuilder()
+                .append(getId())
+                .append(":")
+                .append(getType())
+                .append(":")
+                .append(getDuration())
+                .append(":")
+                .append(getPaper().toString())
+                .append(getStatus().toString())
+                .toString();
     }
 }

@@ -63,18 +63,4 @@ public class PrintQueue implements PrintQueueInterface {
         return this.printQueue.stream().toList();
     }
 
-    @Override
-    public void showAllDocuments() {
-        this.printQueue.stream().forEach((element) -> System.out.println(new StringBuilder()
-                .append(element.getId())
-                .append(":")
-                .append(element.getType())
-                .append(":")
-                .append(element.getDuration())
-                .append(":")
-                .append(element.getPaper().toString())
-                .append(element.getStatus().toString())
-
-        ));
-    }
 }

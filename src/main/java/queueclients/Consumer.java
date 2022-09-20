@@ -25,9 +25,12 @@ public class Consumer implements Callable<List<Document>> {
                 } else {
                     document.setStatus(DocumentStatus.IN_PROGRESS);
                     System.out.println("Document with id = " + document.getId() + " is printing(" + document.getStatus().toString() + "). It takes about " + document.getDuration());
-                    //try {
-                    printQueue.showAllDocuments();
+
+                    //printQueue.showAllDocuments();
+                    printQueue.getAllDocumentsFromQueue().stream()
+                            .forEach(element -> System.out.println(element.toString()));
                     System.out.println();
+
                     Thread.sleep(document.getDuration());
                     document.setStatus(DocumentStatus.DONE);
                     printQueue.putDocumentToPrintedDocumentsList(document);
